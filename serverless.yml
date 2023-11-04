@@ -1,0 +1,32 @@
+service: pixelsapi
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  stackTags:
+    service: "pixels"
+    Name: "pixels"
+  region: "us-east-1"
+  runtime: nodejs18.x
+  stage: dev
+  memorySize: 128
+  timeout: 2
+  environment:
+    ELBAPP: ${env:ELBAPP}
+
+functions:
+  authorizer:
+    handler: src/authorizer/index.handler
+    logRetentionInDays: 3
+  authenticate:
+    handler: src/authenticate/index.handler
+    events:
+      - httpApi:
+          path: /authenticate
+          method: post
+    logRetentionInDays: 3
+
+plugins:
+  - serverless-offline

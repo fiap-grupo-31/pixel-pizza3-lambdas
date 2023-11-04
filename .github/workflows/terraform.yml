@@ -1,0 +1,45 @@
+name: Aws Deploy ApiGateway && Lambdas
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+    
+      - name: Configurando a AWS Credentials Action para o GitHub Actions
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-1
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v2.0.2
+
+      - name: Obtendo VPCID e ELBAPP
+        run: |
+          export VPC_ID=$(aws ec2 describe-vpcs --filters Name=tag:Name,Values=Fiap_Pixels --query 'Vpcs[0].VpcId' --output text)
+          echo $VPC_ID
+          export ELBAPP=$(aws elbv2 describe-load-balancers --query "LoadBalancers[?contains(VpcId, '$VPC_ID')].DNSName" --output text)
+          echo $ELBAPP
+          echo "ELBAPP=$ELBAPP" > .env
+
+      - name: Instalando Serverless Framework e configurando credenciais
+        run: |
+          npm install -g serverless
+          serverless config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY }} --secret ${{ secrets.AWS_SECRET_KEY }}
+
+      - name: Instalando dependencias
+        run: npm install
+
+      - name: Terraform Init - Iniciando
+        run: terraform init
+
+      - name: Terraform Apply - Aplicando
+        run: terraform apply -auto-approve -var "aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" -var "aws_secret_key=${{ secrets.AWS_SECRET_KEY }}"
