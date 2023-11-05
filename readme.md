@@ -2,8 +2,6 @@
 [![AWS](https://img.shields.io/badge/AWS-supported-orange.svg)](https://aws.amazon.com/)
 [![Serverless Framework](https://img.shields.io/badge/Serverless-Framework-orange.svg)](https://www.serverless.com/)
 
-
-
 # Tech Challenge - Fase 03 (GRUPO 31) - AWS Infraestrutura
 
 Este repositório o terraform + aplicação para criação dos seguintes itens:
