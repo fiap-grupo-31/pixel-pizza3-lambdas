@@ -12,8 +12,6 @@ Este repositório o terraform + aplicação para criação dos seguintes itens:
 * 1 Lambda Autentication
 * 1 Lambda Authorizer
 
-![Alt text](fiap-tech3-infra.png)
-
 ## Requisitos
 
 * [Terraform](https://www.terraform.io/) - Terraform is an open-source infrastructure as code software tool that provides a consistent CLI workflow to manage hundreds of cloud services. Terraform codifies cloud APIs into declarative configuration files.
