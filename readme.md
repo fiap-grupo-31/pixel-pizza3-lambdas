@@ -4,15 +4,13 @@
 
 
 
-# Tech Challenge - Fase 03 (GRUPO 31) - AWS Infraestrutura
+# Tech Challenge - Fase 03 (GRUPO 31) - AWS Api Gateway && Lambdas
 
 Este repositório o terraform + aplicação para criação dos seguintes itens:
 
 * 1 API Gateway endpoint
 * 1 Lambda Autentication
 * 1 Lambda Authorizer
-
-![Alt text](fiap-tech3-infra.png)
 
 ## Requisitos
 
@@ -34,6 +32,21 @@ Com os requisitos já identificados, configure abaixo no secrets do github.
 AWS_ACCESS_KEY = "xxxxxxxxxxxxxxxxx"
 AWS_SECRET_KEY = "xxxxxxxxxxxxxxxxx"
 ```
+
+
+## Jornada de teste
+
+Autenticar um cpf para gerar o JWT
+```
+curl --location 'http://[API_GATEWAY]/authenticate' \
+--header 'Content-Type: application/json' \
+--data '{
+    "_cpf": "00000000000"
+}'
+
+```
+
+Nas proximas requisições da aplicação utilizar Authentication Bearer: JWT
 
 ## Uso
 
