@@ -26,7 +26,8 @@ jobs:
         run: |
           export VPC_ID=$(aws ec2 describe-vpcs --filters Name=tag:Name,Values=Fiap_Pixels --query 'Vpcs[0].VpcId' --output text)
           echo $VPC_ID
-          export ELBAPP=$(aws elbv2 describe-load-balancers --query "LoadBalancers[?contains(VpcId, '$VPC_ID')].DNSName" --output text)
+          #export ELBAPP=$(aws elbv2 describe-load-balancers --query "LoadBalancers[?contains(VpcId, '$VPC_ID')].DNSName" --output text)
+          export ELBAPP=$(aws elb describe-load-balancers --query "LoadBalancerDescriptions[?VPCId=='$VPC_ID'].DNSName" --output text)
           echo $ELBAPP
           echo "ELBAPP=$ELBAPP" > .env
 

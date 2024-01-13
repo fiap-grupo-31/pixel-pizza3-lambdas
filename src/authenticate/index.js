@@ -6,7 +6,7 @@ const authenticate = {
     elb: null,
     getConsumer: async ( _cpf ) => {
         try {
-            const { data } = await axios.get(`http://${authenticate.elb}:8080/customers?cpf=${_cpf}`);
+            const { data } = await axios.get(`http://${authenticate.elb}/api/v1.0/ms1/customers?cpf=${_cpf}`);
             if(!data.data[0]) 
                 throw new Error('Inexistente!');
 
@@ -18,7 +18,7 @@ const authenticate = {
     },
     setCustomer: async ( _cpf ) => {
         try {
-            const { data } = await axios.post(`http://${authenticate.elb}:8080/customers`,{
+            const { data } = await axios.post(`http://${authenticate.elb}/api/v1.0/ms1/customers`,{
                 "name": " ",
                 "mail": "",
                 "cpf": _cpf,
