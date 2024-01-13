@@ -4,8 +4,8 @@ const { signingKey } = require('../utils/index')
 module.exports.handler = async (event) => {
     const authorization = ( event?.authorizationToken || event?.headers?.authorization ).replace('Bearer ','');
     const methodArn = event?.routeArn || event.methodArn || '';
-  
-    if (!authorization) {
+
+    if (authorization === '') {
       return generateAuthResponse('Deny', methodArn)
     }
   
