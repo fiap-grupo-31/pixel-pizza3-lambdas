@@ -24,6 +24,18 @@ Este repositório o terraform + aplicação para criação dos seguintes itens:
 * [Serverless Framework](https://www.serverless.com/) - The Serverless Framework is an open-source application framework for building and deploying serverless applications. It provides a simple, intuitive way to define serverless resources and manage deployments.
 
 
+## Jornada de teste
+
+Autenticar um cpf para gerar o JWT
+```
+curl --location 'http://[API_GATEWAY]/authenticate' \
+--header 'Content-Type: application/json' \
+--data '{
+    "_cpf": "00000000000"
+}'
+
+```
+
 ## Antes de começar
 
 Esta execução esta fora do nível gratuito da AWS, importante avaliar antes de executar
