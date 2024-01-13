@@ -2,7 +2,13 @@
 [![AWS](https://img.shields.io/badge/AWS-supported-orange.svg)](https://aws.amazon.com/)
 [![Serverless Framework](https://img.shields.io/badge/Serverless-Framework-orange.svg)](https://www.serverless.com/)
 
+<<<<<<< HEAD
+
+
+# Tech Challenge - Fase 03 (GRUPO 31) - AWS Api Gateway && Lambdas
+=======
 # Tech Challenge - Fase 03 (GRUPO 31) - AWS Infraestrutura
+>>>>>>> 04a782a52040db40d3bcba4254b276c7d9f61f63
 
 Este repositório o terraform + aplicação para criação dos seguintes itens:
 
@@ -18,6 +24,18 @@ Este repositório o terraform + aplicação para criação dos seguintes itens:
 * [Serverless Framework](https://www.serverless.com/) - The Serverless Framework is an open-source application framework for building and deploying serverless applications. It provides a simple, intuitive way to define serverless resources and manage deployments.
 
 
+## Jornada de teste
+
+Autenticar um cpf para gerar o JWT
+```
+curl --location 'http://[API_GATEWAY]/authenticate' \
+--header 'Content-Type: application/json' \
+--data '{
+    "_cpf": "00000000000"
+}'
+
+```
+
 ## Antes de começar
 
 Esta execução esta fora do nível gratuito da AWS, importante avaliar antes de executar
@@ -30,6 +48,21 @@ Com os requisitos já identificados, configure abaixo no secrets do github.
 AWS_ACCESS_KEY = "xxxxxxxxxxxxxxxxx"
 AWS_SECRET_KEY = "xxxxxxxxxxxxxxxxx"
 ```
+
+
+## Jornada de teste
+
+Autenticar um cpf para gerar o JWT
+```
+curl --location 'http://[API_GATEWAY]/authenticate' \
+--header 'Content-Type: application/json' \
+--data '{
+    "_cpf": "00000000000"
+}'
+
+```
+
+Nas proximas requisições da aplicação utilizar Authentication Bearer: JWT
 
 ## Uso
 
