@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { signingKey } = require('../utils/index')
 
 module.exports.handler = async (event) => {
-    const authorization = ( event?.authorizationToken || event?.headers?.authorization ).replace('Bearer ','');
+    const authorization = ( event?.authorizationToken || event?.headers?.authorization || '' ).replace('Bearer ','');
     const methodArn = event?.routeArn || event.methodArn || '';
 
     if (authorization === '') {
