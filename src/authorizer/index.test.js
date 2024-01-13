@@ -38,11 +38,10 @@ describe('handler', () => {
 
 
   it('deve retornar uma resposta não autorizada para ausencia de header authorization', async () => {
-    // Simular um evento passando para a função handler com um token JWT inválido
-    const invalidToken = 'token_invalido';
+    const invalidToken = '';
 
     const mockEvent = {
-      authorizationToken: 'Bearer ',
+      authorizationToken: `Bearer ${invalidToken}`,
     };
 
     // Chamar a função handler com o evento simulado
