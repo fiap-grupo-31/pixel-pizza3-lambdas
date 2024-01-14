@@ -19,6 +19,16 @@ Este repositório o terraform + aplicação para criação dos seguintes itens:
 * [aws cli](https://aws.amazon.com/cli/) optional
 * [Serverless Framework](https://www.serverless.com/) - The Serverless Framework is an open-source application framework for building and deploying serverless applications. It provides a simple, intuitive way to define serverless resources and manage deployments.
 
+## Execução dos testes unitários
+
+- npm run test
+
+![Alt text](test.png)
+
+Coverage
+
+![Alt text](coverage.png)
+
 
 ## Jornada de teste
 
@@ -60,43 +70,26 @@ curl --location 'http://[API_GATEWAY]/authenticate' \
 
 Nas proximas requisições da aplicação utilizar Authentication Bearer: JWT
 
-## Uso
+## AWS configuração
 
 Com os requisitos já identificados, configure abaixo no secrets do github.
 
 ```
-      - name: Checkout do repositório
-        uses: actions/checkout@v2
-    
-      - name: Configurando a AWS Credentials Action para o GitHub Actions
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: us-east-1
-      - name: Setup Terraform CLI
-        uses: hashicorp/setup-terraform@v2.0.2
-
-      - name: Obtendo VPCID e ELBAPP
-        run: |
-          export VPC_ID=$(aws ec2 describe-vpcs --filters Name=tag:Name,Values=Fiap_Pixels --query 'Vpcs[0].VpcId' --output text)
-          echo $VPC_ID
-          export ELBAPP=$(aws elbv2 describe-load-balancers --query "LoadBalancers[?contains(VpcId, 'vpc-0b99899d52f9a4fe7')].DNSName" --output text)
-          echo $ELBAPP
-          echo "ELBAPP=$ELBAPP" > .env
-
-      - name: Instalando Serverless Framework
-        run: npm install -g serverless
-
-      - name: Instalando dependencias
-        run: npm install
-
-      - name: Terraform Init - Iniciando
-        run: terraform init
-
-      - name: Terraform Apply - Aplicando
-        run: terraform apply -auto-approve -var "aws_access_key=${{ secrets.AWS_ACCESS_KEY }}" -var "aws_secret_key=${{ secrets.AWS_SECRET_KEY }}"
+AWS_ACCESS_KEY = "xxxxxxxxxxxxxxxxx"
+AWS_SECRET_KEY = "xxxxxxxxxxxxxxxxx"
+SONAR_HOST_URL = "xxxxxxxxxxxxxxxxx"
+SONAR_TOKEN    = "xxxxxxxxxxxxxxxxx"
 ```
+
+## Uso
+
+Com os requisitos já identificados, as variáveis configuradas no secrets do github.
+
+Efetue o Pull Request com a branch master para executar o processo de
+
+- Teste
+- Sonarqube
+- Deploy
 
 ### Execução do projeto
 
