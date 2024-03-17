@@ -3,7 +3,7 @@
 [![Serverless Framework](https://img.shields.io/badge/Serverless-Framework-orange.svg)](https://www.serverless.com/)
 
 
-# Tech Challenge - Fase 04 (GRUPO 31) - AWS Api Gateway && Lambdas
+# Tech Challenge - Fase 05 (GRUPO 31) - AWS Api Gateway && Lambdas
 
 Este repositório o terraform + aplicação para criação dos seguintes itens:
 
